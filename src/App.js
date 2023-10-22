@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { useDispatch } from 'react-redux';
+import { reset } from './store/actions';
+import CarList from './components/CarList';
+import BicycleList from './components/BicycleList';
+import './styles.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const dispatch = useDispatch();
+	const handleResetClick = () => {
+		dispatch(reset());
+	};
+
+	return (
+		<div className='container is-fluid'>
+			<button
+				onClick={() => handleResetClick()}
+				className='button is-danger'
+			>
+				Reset Both Playlists
+			</button>
+			<CarList />
+			<BicycleList />
+		</div>
+	);
 }
 
 export default App;
